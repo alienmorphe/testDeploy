@@ -1,0 +1,6 @@
+*.log 
+tmp/*
+.DS_STORE
+coverage.data
+coverage/*
+fichierAIgnorer.php
