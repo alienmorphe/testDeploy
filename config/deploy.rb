@@ -1,22 +1,56 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+# fichier de test pour le deployement de testDeploy
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :application, "test deploy"                                                                 # nom de l'application
+set :repository, "git@github.com:alienmorphe/testDeploy.git"                                    # adresse du repositorie sur github
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"                       # endroit ou deployé le projet sur le serveur
+set :scm, :git
+set :scm_verbose, true
+set :spinner_user, nil
+set :use_sudo, false
+default_run_options[:pty] = true
+set :user, "kantik"                                                                            # nom de l'utilisateur 
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+role :web, "dev.kantik.net"
+role :app, "dev.kantik.net"
+role :db, "dev.kantik.net", :primary => true
 
-# namespace :deploy do
-#   task :start {}
-#   task :stop {}
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
+# desc "This will deploy the app"
+# task :after_update_code, :roles => [:app, :db, :web] do
+  # run <<-CMD
+  #   ln -nfs
+  # CMD
+  # run "ln -nfs #{shared_path}/photos #{current_path}/photos"
 # end
+namespace :deploy do
+  # Overwritten to provide flexibility for people who aren't using Rails.
+  task :setup, :except => { :no_release => true } do
+    dirs = [deploy_to, releases_path, shared_path, cache_path, media_path]
+    dirs += %w(system).map { |d| File.join(shared_path, d) }
+    run "umask 02 && mkdir -p #{dirs.join(' ')}"
+  end
+
+  # Also overwritten to remove Rails-specific code.
+  task :finalize_update, :except => { :no_release => true } do
+    run "chmod -R g+w #{release_path}" if fetch(:group_writable, true)
+  end
+
+  task :migrate do
+  end
+
+  task :migrations do
+  end
+
+  task :cold do
+  end
+
+  task :start do
+  end
+
+  task :stop do
+  end
+
+  # Do nothing (To restart apache, run 'cap deploy:apache:restart')
+  task :restart do
+  end
+end
