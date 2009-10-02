@@ -1,7 +1,7 @@
 # fichier de test pour le deployement de testDeploy
 
 set :application, "test deploy"                                                                 # nom de l'application
-set :repository, "git@github.com:alienmorphe/testDeploy.git"                                    # adresse du repositorie sur github
+set :repository, "git://github.com/alienmorphe/testDeploy.git "                                    # adresse du repositorie sur github
 
 set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"                       # endroit ou deployé le projet sur le serveur
 set :scm, :git
@@ -9,7 +9,7 @@ set :scm_verbose, true
 set :spinner_user, nil
 set :use_sudo, false
 default_run_options[:pty] = true
-set :user, "kantik"                                                                               # nom de l'utilisateur 
+set :user, "root"                                                                               # nom de l'utilisateur 
 
 role :web, "dev.kantik.net"
 role :app, "dev.kantik.net"
