@@ -9,7 +9,7 @@ set :scm_verbose, true
 set :spinner_user, nil
 set :use_sudo, false
 default_run_options[:pty] = true
-set :user, "root"                                                                               # nom de l'utilisateur 
+set :user, "kantik"                                                                               # nom de l'utilisateur 
 
 role :web, "dev.kantik.net"
 role :app, "dev.kantik.net"
