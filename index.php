@@ -6,7 +6,7 @@ echo "que pasa?";
 
 ?>
 
-<div><IMG SRC="/image/logo_noodle.jpg" ALT="logo noodle" TITLE="noodle"></div>
+<div><IMG SRC="./images/logo_noodle.jpg" ALT="logo noodle" TITLE="noodle"></div>
 
 <?php
 
