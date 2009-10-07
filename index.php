@@ -11,3 +11,4 @@ echo "<br/> troiseme test symlink pour image durant le deploy <br/>";
 	ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/current/images
 </div>
 
+<h1>Je suis sur le staging </h1>

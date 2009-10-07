@@ -3,7 +3,7 @@
 set :application, "test deploy"                                                                 # nom de l'application
 set :repository, "git://github.com/alienmorphe/testDeploy.git "                                    # adresse du repositorie sur github
 
-set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"                       # endroit ou deployé le projet sur le serveur
+set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy_staging"                       # endroit ou deployé le projet sur le serveur
 set :scm, :git
 set :scm_verbose, true
 set :spinner_user, nil
