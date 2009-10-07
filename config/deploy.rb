@@ -28,6 +28,7 @@ namespace :deploy do
     dirs = [deploy_to, releases_path, shared_path, cache_path, media_path]
     dirs += %w(system).map { |d| File.join(shared_path, d) }
     run "umask 02 && mkdir -p #{dirs.join(' ')}"
+    run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/current/images"
   end
 
   # Also overwritten to remove Rails-specific code.
