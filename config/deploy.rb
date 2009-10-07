@@ -3,7 +3,7 @@
 set :application, "test deploy"                                                                 # nom de l'application
 set :repository, "git://github.com/alienmorphe/testDeploy.git "                                    # adresse du repositorie sur github
 
-set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy_staging"                       # endroit ou deployé le projet sur le serveur
+                      # endroit ou deployé le projet sur le serveur
 set :scm, :git
 set :scm_verbose, true
 set :spinner_user, nil
@@ -16,6 +16,15 @@ role :web, "dev.kantik.net"
 role :app, "dev.kantik.net"
 role :db, "dev.kantik.net", :primary => true
 
+if ENV['DEPLOY'] == 'staging'                                                                           #deploy sur staging ou prod
+  set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy_staging"
+  set :branch, "staging" 
+elsif ENV['DEPLOY'] == 'prod'
+  set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"
+  set :branch, "master" 
+end
+  
+  
 # desc "This will deploy the app"
 # task :after_update_code, :roles => [:app, :db, :web] do
   # run <<-CMD
