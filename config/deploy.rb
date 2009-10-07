@@ -28,14 +28,19 @@ namespace :deploy do
     dirs = [deploy_to, releases_path, shared_path, cache_path, media_path]
     dirs += %w(system).map { |d| File.join(shared_path, d) }
     run "umask 02 && mkdir -p #{dirs.join(' ')}"
-    run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/current/images"
+    put "#{shared_path}"
   end
 
   # Also overwritten to remove Rails-specific code.
   task :finalize_update, :except => { :no_release => true } do
     run "chmod -R g+w #{release_path}" if fetch(:group_writable, true)
   end
-
+  
+  # create a symlink for the pictures
+  task :create_symlink_pictures, :except => { :no_release => true } do
+    run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images #{release_path}/images"
+  end
+  
   task :migrate do
   end
 
@@ -54,9 +59,5 @@ namespace :deploy do
   # Do nothing (To restart apache, run 'cap deploy:apache:restart')
   task :restart do
   end
-  
-  # create a symlink for the pictures
-  task :create_symlink_pictures do
-    run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/current/images"
-  end
+
 end
