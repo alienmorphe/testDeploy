@@ -1,15 +1,10 @@
 <?php
 
 echo "hello world of deploy";
-echo" <br /> voyons voir le deploy <br/>";
-echo "que pasa?";
+echo "path : ".$_SERVER['REQUEST_URI'];
 
 ?>
 
 <div><IMG SRC="/images/logo_noodle.jpg" ALT="logo noodle" TITLE="noodle"></div>
 
-<?php
 
-echo "chemin relatif : ".getenv("PATH_INFO")."<br/>";
-echo "chemin  : ".getenv("PATH")."<br/>";
-?>
