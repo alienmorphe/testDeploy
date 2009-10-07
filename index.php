@@ -17,4 +17,4 @@ echo "<br/> troiseme test symlink pour image durant le deploy <br/>";
 
 <div> adresse image staging : http://dev.kantik.net/images/logo_noodle.jpg </div>
 
-<h1>Je suis sur le master hehe </h1>
+<h1>Je suis sur le master post merge</h1>
