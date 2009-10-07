@@ -53,4 +53,10 @@ namespace :deploy do
   # Do nothing (To restart apache, run 'cap deploy:apache:restart')
   task :restart do
   end
+  
+  # create a symlink for the pictures
+  task :create_symlink_pictures
+    run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/current/images
+    "
+  end
 end
