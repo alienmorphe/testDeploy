@@ -11,4 +11,10 @@ echo "<br/> troiseme test symlink pour image durant le deploy <br/>";
 	ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/current/images
 </div>
 
-<h1>Je suis sur le staging </h1>
+<h1>Creer un nouvelle branche distante</h1>
+<div> git remote add nombranch repertoireGithub </div>
+<div> git push origin nomBranch </div>
+
+<div> adresse image staging : http://dev.kantik.net/images/logo_noodle.jpg </div>
+
+<h1>Je suis sur le master hehe </h1>
