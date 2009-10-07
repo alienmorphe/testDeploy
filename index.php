@@ -10,4 +10,6 @@ echo "que pasa?";
 
 <?php
 
+echo "chemin relatif : ".$PATH_INFO."<br/>";
+echo "chemin  : ".$PATH."<br/>";
 ?>
