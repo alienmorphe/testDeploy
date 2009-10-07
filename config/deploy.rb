@@ -1,13 +1,9 @@
 # fichier de test pour le deployement de testDeploy
-require 'capistrano/ext/multistage'
-set :stages, %w(staging prod)
-set :default_stage, "prod"
-
 
 set :application, "test deploy"                                                                 # nom de l'application
 set :repository, "git://github.com/alienmorphe/testDeploy.git "                                    # adresse du repositorie sur github
 
-                      # endroit ou deployé le projet sur le serveur
+set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy_staging"                       # endroit ou deployé le projet sur le serveur
 set :scm, :git
 set :scm_verbose, true
 set :spinner_user, nil
@@ -20,8 +16,6 @@ role :web, "dev.kantik.net"
 role :app, "dev.kantik.net"
 role :db, "dev.kantik.net", :primary => true
 
-  
-  
 # desc "This will deploy the app"
 # task :after_update_code, :roles => [:app, :db, :web] do
   # run <<-CMD
@@ -68,4 +62,4 @@ namespace :deploy do
   task :restart do
   end
 
-end
+end 
