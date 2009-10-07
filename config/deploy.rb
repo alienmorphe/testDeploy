@@ -55,8 +55,7 @@ namespace :deploy do
   end
   
   # create a symlink for the pictures
-  task :create_symlink_pictures
-    run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/current/images
-    "
+  task :create_symlink_pictures do
+    run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/current/images"
   end
 end
