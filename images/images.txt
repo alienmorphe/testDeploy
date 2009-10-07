@@ -1,0 +1,2 @@
+on cherche a redirigier tous les appels aux images de ce repertoire vers
+un repertoire placé a la racine asset/images
