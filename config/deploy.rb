@@ -1,8 +1,4 @@
 # fichier de test pour le deployement de testDeploy
-require 'capistrano/ext/multistage'
-set :stages, %w(staging prod)
-set :default_stage, "prod"
-
 
 set :application, "test deploy"                                                                 # nom de l'application
 set :repository, "git://github.com/alienmorphe/testDeploy.git "                                    # adresse du repositorie sur github
@@ -19,6 +15,14 @@ set :branch, "staging"                                                          
 role :web, "dev.kantik.net"
 role :app, "dev.kantik.net"
 role :db, "dev.kantik.net", :primary => true
+
+if ENV['DEPLOY'] == 'staging'                                                                           #deploy sur staging ou prod
+  set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy_staging"
+  set :branch, "staging" 
+elsif ENV['DEPLOY'] == 'prod'
+  set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"
+  set :branch, "master" 
+end
   
   
 # desc "This will deploy the app"
@@ -67,4 +71,4 @@ namespace :deploy do
   task :restart do
   end
 
-end
+end 
