@@ -14,3 +14,7 @@ echo "<br/> troiseme test symlink pour image durant le deploy <br/>";
 <h1>Creer un nouvelle branche distante</h1>
 <div> git remote add nombranch repertoireGithub </div>
 <div> git push origin nomBranch </div>
+
+<div> adresse image staging : http://dev.kantik.net/images/logo_noodle.jpg </div>
+
+<h1>Je suis sur le master </h1>
