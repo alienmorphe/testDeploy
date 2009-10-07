@@ -3,28 +3,19 @@
 set :application, "test deploy"                                                                 # nom de l'application
 set :repository, "git://github.com/alienmorphe/testDeploy.git "                                    # adresse du repositorie sur github
 
-                      # endroit ou deployé le projet sur le serveur
+set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"                       # endroit ou deployé le projet sur le serveur
 set :scm, :git
 set :scm_verbose, true
 set :spinner_user, nil
 set :use_sudo, false
 default_run_options[:pty] = true
-set :user, "root"
-set :branch, "staging"                                                                               # nom de l'utilisateur 
+set :user, "root"     
+set :branch, "master"                                                                          # nom de l'utilisateur 
 
 role :web, "dev.kantik.net"
 role :app, "dev.kantik.net"
 role :db, "dev.kantik.net", :primary => true
 
-if ENV['DEPLOY'] == 'staging'                                                                           #deploy sur staging ou prod
-  set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy_staging"
-  set :branch, "staging" 
-elsif ENV['DEPLOY'] == 'prod'
-  set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"
-  set :branch, "master" 
-end
-  
-  
 # desc "This will deploy the app"
 # task :after_update_code, :roles => [:app, :db, :web] do
   # run <<-CMD
@@ -49,7 +40,7 @@ namespace :deploy do
   
   # create a symlink for the pictures
   task :create_symlink_pictures, :except => { :no_release => true } do
-    run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images #{release_path}/images"
+    #run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images #{release_path}/images"
   end
   
   task :migrate do
