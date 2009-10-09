@@ -35,7 +35,7 @@ role :db, "dev.kantik.net", :primary => true
   # CMD
   # run "ln -nfs #{shared_path}/photos #{current_path}/photos"
 # end
-namespace :deploy, :roles =>{:prod, :staging} do
+namespace :deploy do
   # Overwritten to provide flexibility for people who aren't using Rails.
   task :setup, :except => { :no_release => true } do
     dirs = [deploy_to, releases_path, shared_path, cache_path, media_path]
@@ -44,7 +44,7 @@ namespace :deploy, :roles =>{:prod, :staging} do
   end
 
   # Also overwritten to remove Rails-specific code.
-  task :finalize_update, :roles =>{:prod, :staging} , :except => { :no_release => true } do
+  task :finalize_update, :except => { :no_release => true } do
     run "chmod -R g+w #{release_path}" if fetch(:group_writable, true)
     run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images #{release_path}/images"
     #run "cd #{shared_path}"
