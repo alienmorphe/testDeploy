@@ -3,14 +3,26 @@
 set :application, "test deploy"                                                                 # nom de l'application
 set :repository, "git://github.com/alienmorphe/testDeploy.git "                                    # adresse du repositorie sur github
 
-set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"                       # endroit ou deployé le projet sur le serveur
+                       # endroit ou deployé le projet sur le serveur
 set :scm, :git
 set :scm_verbose, true
 set :spinner_user, nil
 set :use_sudo, false
 default_run_options[:pty] = true
-set :user, "root"     
-set :branch, "master"                                                                          # nom de l'utilisateur 
+
+if ENV['DEPLOY'] == 'prod'
+  # env DEPLOY='PRODUCTION' cap deploy
+   puts "*** Deploying to prod"
+   set :user, "root"     
+   set :branch, "master"                                                                          # nom de l'utilisateur 
+   set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy"
+elsif ENV['DEPLOY'] == 'staging'
+   puts "*** Deploying to staging"
+   set :user, "root"     
+   set :branch, "staging"                                                                          # nom de l'utilisateur 
+   set :deploy_to, "/vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy_staging"
+end
+
 
 role :web, "dev.kantik.net"
 role :app, "dev.kantik.net"
@@ -23,7 +35,7 @@ role :db, "dev.kantik.net", :primary => true
   # CMD
   # run "ln -nfs #{shared_path}/photos #{current_path}/photos"
 # end
-namespace :deploy do
+namespace :deploy, :roles =>{:prod, :staging} do
   # Overwritten to provide flexibility for people who aren't using Rails.
   task :setup, :except => { :no_release => true } do
     dirs = [deploy_to, releases_path, shared_path, cache_path, media_path]
