@@ -44,7 +44,7 @@ namespace :deploy, :roles =>{:prod, :staging} do
   end
 
   # Also overwritten to remove Rails-specific code.
-  task :finalize_update, :except => { :no_release => true } do
+  task :finalize_update, :roles =>{:prod, :staging} , :except => { :no_release => true } do
     run "chmod -R g+w #{release_path}" if fetch(:group_writable, true)
     run "ln -s /vhome/vhosts/dev.kantik.net/htdocs/olivier/test_deploy/asset/images #{release_path}/images"
     #run "cd #{shared_path}"
